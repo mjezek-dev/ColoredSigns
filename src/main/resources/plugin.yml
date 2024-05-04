@@ -1,0 +1,9 @@
+name: ColoredSigns
+main: eu.mjezek.coloredsigns.ColoredSigns
+version: 1.3
+author: mjezek
+description: Allows changing color of sign text with dye like in 1.14+.
+
+permissions:
+  coloredsigns.use:
+    default: true

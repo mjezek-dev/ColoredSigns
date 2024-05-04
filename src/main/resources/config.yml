@@ -1,0 +1,2 @@
+# Should plugin remove 1 piece of dye from inventory when changing sign color?
+removeDye: false
