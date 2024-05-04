@@ -8,6 +8,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -28,13 +29,13 @@ public class ColoredSigns extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this, this);
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     private void onInteract(PlayerInteractEvent event) {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK)
             return;
 
         Block clickedBlock = event.getClickedBlock();
-        if (clickedBlock.getType() != Material.SIGN && clickedBlock.getType() != Material.SIGN_POST && clickedBlock.getType() != Material.WALL_SIGN)
+        if (clickedBlock.getType() != Material.SIGN_POST && clickedBlock.getType() != Material.WALL_SIGN)
             return;
 
         Player p = event.getPlayer();
@@ -59,7 +60,7 @@ public class ColoredSigns extends JavaPlugin implements Listener {
             }
         }
 
-        Sign sign = (Sign) event.getClickedBlock().getState();
+        Sign sign = (Sign) clickedBlock.getState();
 
         for (int line = 0; line <= 3; line++) {
             sign.setLine(line, chatColor + ChatColor.stripColor(sign.getLine(line)));
